@@ -111,7 +111,7 @@ function evaluate({ currentOperand, previousOperand, operation }) {
       computation = current - prev;
       break;
     case "/":
-      computation = prev / current;
+      computation = current / prev;
       break;
     case "*":
       computation = prev * current;
@@ -137,12 +137,15 @@ function App() {
         <div className="current-operand">{formatOperand(currentOperand)}</div>
       </div>
       <button
-        className="span-two"
+        className="span-two big"
         onClick={() => dispatch({ type: ACTIONS.CLEAR })}
       >
         AC
       </button>
-      <button onClick={() => dispatch({ type: ACTIONS.REMOVE_DIGIT })}>
+      <button
+        className="del-btn"
+        onClick={() => dispatch({ type: ACTIONS.REMOVE_DIGIT })}
+      >
         DEL
       </button>
       <OperationButton operation="/" dispatch={dispatch} />
@@ -161,7 +164,7 @@ function App() {
       <DigitButton digit="." dispatch={dispatch} />
       <DigitButton digit="0" dispatch={dispatch} />
       <button
-        className="span-two"
+        className="span-two big"
         onClick={() => dispatch({ type: ACTIONS.EVALUATE })}
       >
         =
